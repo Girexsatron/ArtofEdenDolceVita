@@ -1,16 +1,17 @@
 package com.example.artofedendolcevita
 
-// Model danych reprezentujący ozdobę – implementuje interfejs ProductItem
 data class Decoration(
+    override val id: Int,
     override val name: String,
-    override val imageRes: Int
-) : ProductItem
+    override val imageRes: Int,
+    override val price: Double
+) : IProductItem
 
 object DecorationRepository {
     val decorations = listOf(
-        Decoration("Porcelanowy słonik", R.drawable.decoration_porcelain_elephant),
-        Decoration("Ozdoba wielkanocna", R.drawable.decoration_easter),
-        Decoration("Porcelanowa figura", R.drawable.decoration_porcelain_figure),
-        Decoration("Dekoracja świąteczna", R.drawable.decoration_christmas)
+        Decoration(id = 101, name = "Porcelanowy słonik", imageRes = R.drawable.decoration_porcelain_elephant, price = 20.0),
+        Decoration(id = 102, name = "Ozdoba wielkanocna", imageRes = R.drawable.decoration_easter, price = 15.0),
+        Decoration(id = 103, name = "Porcelanowa figura", imageRes = R.drawable.decoration_porcelain_figure, price = 25.0),
+        Decoration(id = 104, name = "Dekoracja świąteczna", imageRes = R.drawable.decoration_christmas, price = 30.0)
     )
 }

@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun MainScreen() {
-    // 0 - Bukiety, 1 - Ozdoby, 2 - Koszyk
     var selectedTab by remember { mutableStateOf(0) }
 
     Scaffold(
@@ -39,9 +38,23 @@ fun MainScreen() {
         }
     ) { innerPadding ->
         when (selectedTab) {
-            0 -> HomeScreen() // ekran bukietów
-            1 -> DecorationScreen(modifier = Modifier.padding(innerPadding)) // ekran ozdób
-            2 -> CartScreen() // ekran koszyka
+            // 1. Ekran bukietów z możliwością edycji
+            0 -> BouquetStoreScreen(
+                onNavigateToCart = {
+                    // Zmieniamy zakładkę na "Koszyk"
+                    selectedTab = 2
+                },
+                onNavigateToBouquets = {
+                    // Powracamy / pozostajemy na zakładce bukietów
+                    selectedTab = 0
+                }
+            )
+
+            // 2. Ekran ozdób
+            1 -> DecorationScreen(modifier = Modifier.padding(innerPadding))
+
+            // 3. Ekran koszyka
+            2 -> CartScreen()
         }
     }
 }

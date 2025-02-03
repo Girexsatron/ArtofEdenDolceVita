@@ -16,7 +16,8 @@ import androidx.compose.foundation.layout.systemBarsPadding
 
 @Composable
 fun HomeScreen() {
-    val bouquets = BouquetRepository.bouquets
+    // Używamy metody getAllBouquets(), która zwraca listę bukietów.
+    val bouquets = BouquetRepository.getAllBouquets()
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 150.dp),
@@ -31,8 +32,13 @@ fun HomeScreen() {
                     .padding(8.dp)
                     .fillMaxWidth()
                     .clickable {
-                        // Dodajemy bukiet do koszyka po kliknięciu
-                        CartRepository.addItem(bouquet)
+                        // Konwertujemy Bouquet do ProductItem
+                        val productItem = ProductItem(
+                            id = bouquet.id,
+                            name = bouquet.name,
+                            imageRes = bouquet.imageRes  // Upewnij się, że ta właściwość istnieje w modelu Bouquet
+                        )
+                        CartRepository.addItem(productItem)
                     }
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {

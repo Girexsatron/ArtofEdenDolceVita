@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.runtime.Composable
 
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit) {
@@ -20,14 +20,12 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
 
-    // Cały interfejs będzie umieszczony wewnątrz jednej kolumny
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding() // dodaje odstęp na górze, aby nie nachodzić na status bar
+            .systemBarsPadding()
             .padding(16.dp)
     ) {
-        // Pole tekstowe do wprowadzenia emaila
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -38,7 +36,6 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Pole tekstowe do wprowadzenia hasła
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -50,13 +47,11 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Jeżeli istnieje komunikat błędu, wyświetl go
         if (errorMessage.isNotEmpty()) {
             Text(text = errorMessage, color = Color.Red)
             Spacer(modifier = Modifier.height(8.dp))
         }
 
-        // Przycisk logowania
         Button(
             onClick = {
                 if (email.isNotEmpty() && password.isNotEmpty()) {

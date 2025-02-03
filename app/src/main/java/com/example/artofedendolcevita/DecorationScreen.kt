@@ -31,7 +31,7 @@ fun DecorationScreen(modifier: Modifier = Modifier) {
                     .padding(8.dp)
                     .fillMaxWidth()
                     .clickable {
-                        // Dodajemy ozdobę do koszyka po kliknięciu
+                        // Dodaj dekorację do koszyka
                         CartRepository.addItem(decoration)
                     }
             ) {

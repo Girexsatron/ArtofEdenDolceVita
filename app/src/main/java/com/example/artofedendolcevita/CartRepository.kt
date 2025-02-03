@@ -3,14 +3,13 @@ package com.example.artofedendolcevita
 import androidx.compose.runtime.mutableStateListOf
 
 object CartRepository {
-    // Lista produktów dodanych do koszyka – dzięki mutableStateListOf UI będzie reagować na zmiany
-    val cartItems = mutableStateListOf<ProductItem>()
+    val cartItems = mutableStateListOf<IProductItem>()
 
-    fun addItem(item: ProductItem) {
+    fun addItem(item: IProductItem) {
         cartItems.add(item)
     }
 
-    fun removeItem(item: ProductItem) {
+    fun removeItem(item: IProductItem) {
         cartItems.remove(item)
     }
 }
