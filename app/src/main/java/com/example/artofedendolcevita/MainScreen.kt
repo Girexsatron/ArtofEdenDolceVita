@@ -1,13 +1,16 @@
 package com.example.artofedendolcevita
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocalFlorist
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun MainScreen() {
@@ -37,24 +40,30 @@ fun MainScreen() {
             }
         }
     ) { innerPadding ->
-        when (selectedTab) {
-            // 1. Ekran bukietów z możliwością edycji
-            0 -> BouquetStoreScreen(
-                onNavigateToCart = {
-                    // Zmieniamy zakładkę na "Koszyk"
-                    selectedTab = 2
-                },
-                onNavigateToBouquets = {
-                    // Powracamy / pozostajemy na zakładce bukietów
-                    selectedTab = 0
-                }
-            )
+        Column( // Dodajemy Column jako kontener dla treści zakładek, żeby móc dodać padding
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding) // Zachowujemy padding z Scaffold
+                .padding(top = 16.dp)   // DODAJEMY padding(top = 16.dp) TUTAJ, na poziomie MainScreen
+        ) {
+            when (selectedTab) {
+                // 1. Ekran bukietów z możliwością edycji
+                0 -> BouquetStoreScreen(
+                    onNavigateToCart = {
+                        // Zmieniamy zakładkę na "Koszyk"
+                        selectedTab = 2
+                    },
+                    onNavigateToBouquets = {
+                        // Powracamy / pozostajemy na zakładce bukietów
+                        selectedTab = 0
+                    }
+                )
 
-            // 2. Ekran ozdób
-            1 -> DecorationScreen(modifier = Modifier.padding(innerPadding))
-
-            // 3. Ekran koszyka
-            2 -> CartScreen()
+                // 2. Ekran ozdób
+                1 -> DecorationScreen(modifier = Modifier.fillMaxSize()) // Używamy fillMaxSize() bo Column już ma padding
+                // 3. Ekran koszyka
+                2 -> CartScreen()
+            }
         }
     }
 }

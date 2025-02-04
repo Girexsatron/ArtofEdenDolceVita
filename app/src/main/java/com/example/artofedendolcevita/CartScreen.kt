@@ -13,7 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.ui.Alignment
 
 @Composable
@@ -58,7 +58,7 @@ fun CartScreen() {
                         )
                         // Jeśli chcesz dodać np. cenę produktu
                         Text(
-                            text = "Cena: ${item.price} PLN",
+                            text = "Cena: ${item.price} zł",
                             style = MaterialTheme.typography.bodyLarge
                         )
                     }
@@ -76,8 +76,8 @@ fun CartScreen() {
         // Na samym końcu listy – sekcja podsumowania koszyka
         item {
             Spacer(modifier = Modifier.height(16.dp))
-            Divider(modifier = Modifier.padding(bottom = 8.dp))
-            Text(text = "Łączna cena: $totalPrice PLN")
+            HorizontalDivider(modifier = Modifier.padding(bottom = 8.dp))
+            Text(text = "Łączna cena: $totalPrice zł")
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
